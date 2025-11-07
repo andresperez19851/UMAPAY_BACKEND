@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ApplicationApiKeyRequired" xml:space="preserve">
+    <value>La clave API es bligatoria.</value>
+  </data>
+  <data name="ApplicationGetwayInvalid" xml:space="preserve">
+    <value>La pasareala de pagos no está asociada con esta aplicación</value>
+  </data>
+  <data name="ApplicationInactive" xml:space="preserve">
+    <value>Esta aplicación no está activa.</value>
+  </data>
+  <data name="ApplicationInvalid" xml:space="preserve">
+    <value>La aplicación es inválida.</value>
+  </data>
+  <data name="ApplicationNameExists" xml:space="preserve">
+    <value>El nombre de la aplicacion ya se encuentra registrado</value>
+  </data>
+  <data name="ApplicationNameLenght" xml:space="preserve">
+    <value>El nombre de la aplicación debe tener entre 3 y 100 caracteres.</value>
+  </data>
+  <data name="ApplicationNameRequired" xml:space="preserve">
+    <value>El nombre de la aplicación no puede estar vacío.</value>
+  </data>
+  <data name="ApplicationNotFound" xml:space="preserve">
+    <value>Aplicación no encontrada.</value>
+  </data>
+  <data name="AuthController_AuthenticationFailed" xml:space="preserve">
+    <value>Autenticación fallida para ApiKey: {0}. Error: {1}</value>
+  </data>
+  <data name="AuthController_InvalidModelState" xml:space="preserve">
+    <value>Estado del modelo inválido para intento de inicio de sesión con ApiKey: {0}</value>
+  </data>
+  <data name="AuthController_LoginAttemptCompleted" xml:space="preserve">
+    <value>Intento de inicio de sesión completado a las {0} para ApiKey: {1}. Duración: {2}. Éxito: {3}</value>
+  </data>
+  <data name="AuthController_LoginAttemptStarted" xml:space="preserve">
+    <value>Intento de inicio de sesión comenzado a las {0} para ApiKey: {1}</value>
+  </data>
+  <data name="AuthController_TransactionCreationFailed" xml:space="preserve">
+    <value>Creación de transacción fallida para ApiKey: {0}. Error: {1}</value>
+  </data>
+  <data name="AuthController_UnexpectedError" xml:space="preserve">
+    <value>Ocurrió un error inesperado durante el inicio de sesión para ApiKey: {0}</value>
+  </data>
+  <data name="AuthController_UnexpectedErrorMessage" xml:space="preserve">
+    <value>Ocurrió un error inesperado</value>
+  </data>
+  <data name="Controller_CreateSucess" xml:space="preserve">
+    <value>El registro ha sido creado con exito</value>
+  </data>
+  <data name="Controller_UpdateSucess" xml:space="preserve">
+    <value>El registro ha sido actualizado con exito</value>
+  </data>
+  <data name="CountryInvalid" xml:space="preserve">
+    <value>El destino es inválido.</value>
+  </data>
+  <data name="CountryNameInvalid" xml:space="preserve">
+    <value>El país no existe</value>
+  </data>
+  <data name="CustomerCodeSapRequired" xml:space="preserve">
+    <value>Código sap es obligatorio</value>
+  </data>
+  <data name="CustomerCreationError" xml:space="preserve">
+    <value>Error al crear el cliente</value>
+  </data>
+  <data name="CustomerEmailRequired" xml:space="preserve">
+    <value>El correo del ciente es obligatorio</value>
+  </data>
+  <data name="CustomerFirstNameRequired" xml:space="preserve">
+    <value>El nombre es obligatorio</value>
+  </data>
+  <data name="CustomerLastNameRequired" xml:space="preserve">
+    <value>El apellido es obligatorio</value>
+  </data>
+  <data name="CustomerRequired" xml:space="preserve">
+    <value>El ciente es obligatorio</value>
+  </data>
+  <data name="Error_ArgumentStatusNull" xml:space="preserve">
+    <value>El argumento '{0}' no puede ser nulo.</value>
+  </data>
+  <data name="Error_InvoiceStatusRequired" xml:space="preserve">
+    <value>El estado de la factura es obligatorio.</value>
+  </data>
+  <data name="Error_TransactionInvoiceNotFound" xml:space="preserve">
+    <value>No se encontró la factura de la transacción.</value>
+  </data>
+  <data name="GatewayController_ApplicationCodeRetrieved" xml:space="preserve">
+    <value>Código de aplicación recuperado: {0}</value>
+  </data>
+  <data name="GatewayController_GatewaysNotFound" xml:space="preserve">
+    <value>No se encontraron gateways para la aplicación con código: {0}</value>
+  </data>
+  <data name="GatewayController_GatewaysRetrieved" xml:space="preserve">
+    <value>Gateways recuperados con éxito para la aplicación con código: {0}. Cantidad de gateways: {1}</value>
+  </data>
+  <data name="GatewayController_GetAttemptCompleted" xml:space="preserve">
+    <value>Intento de obtención de gateways completado a las {0}. Duración: {1}. Éxito: {2}</value>
+  </data>
+  <data name="GatewayController_GetAttemptStarted" xml:space="preserve">
+    <value>Intento de obtención de gateways iniciado a las {0}</value>
+  </data>
+  <data name="GatewayController_UnauthorizedAccess" xml:space="preserve">
+    <value>Acceso no autorizado. No se pudo obtener el código de aplicación</value>
+  </data>
+  <data name="GatewayController_UnexpectedError" xml:space="preserve">
+    <value>Ocurrió un error inesperado durante la obtención de gateways</value>
+  </data>
+  <data name="GatewayExists" xml:space="preserve">
+    <value>La configuración ya se encuentra registrada</value>
+  </data>
+  <data name="GatewayInvalid" xml:space="preserve">
+    <value>La psarela de pagos es invalida.</value>
+  </data>
+  <data name="GatewayNotFound" xml:space="preserve">
+    <value>Pasarela de pagos no encontrada.</value>
+  </data>
+  <data name="GatewayRequired" xml:space="preserve">
+    <value>EL portal de pagos es obligatorio.</value>
+  </data>
+  <data name="InvalidCredentials" xml:space="preserve">
+    <value>Credenciales no válidas.</value>
+  </data>
+  <data name="InvalidStoken" xml:space="preserve">
+    <value>El stoken es inválido</value>
+  </data>
+  <data name="JWTGatewayRequired" xml:space="preserve">
+    <value>La información de la pasarela en inválida.</value>
+  </data>
+  <data name="JWTSecretRequired" xml:space="preserve">
+    <value>JWT Secret no está configurado.</value>
+  </data>
+  <data name="NuveiController_InvalidJson" xml:space="preserve">
+    <value>Json inválidos para la la actualización del pago</value>
+  </data>
+  <data name="NuveiController_InvalidModelState" xml:space="preserve">
+    <value>Datos inválidos para la la actualización del pago {0}</value>
+  </data>
+  <data name="NuveiController_Sucess" xml:space="preserve">
+    <value>Información actualizada con éxito.</value>
+  </data>
+  <data name="PaymentAmountInvalid" xml:space="preserve">
+    <value>El valor del pago debe ser mayor a 0.</value>
+  </data>
+  <data name="PaymentController_GenerateLinkAttemptCompleted" xml:space="preserve">
+    <value>ntento de generación de enlace de pago completado a las {0} para el código de pasarela: {1}. Duración: {2}. Éxito: {3}</value>
+  </data>
+  <data name="PaymentController_GenerateLinkAttemptStarted" xml:space="preserve">
+    <value>Intento de generación de enlace de pago iniciado a las {0} para el código de pasarela: {1}</value>
+  </data>
+  <data name="PaymentController_InvalidModelState" xml:space="preserve">
+    <value>Datos inválidos para la generación de enlace de pago con código de pasarela: {0}</value>
+  </data>
+  <data name="PaymentController_LinkGenerationFailed" xml:space="preserve">
+    <value>Fallo en la generación del enlace de pago para el código de pasarela: {0}. Error: {1}</value>
+  </data>
+  <data name="PaymentController_LinkGenerationSucceeded" xml:space="preserve">
+    <value>Enlace de pago generado con éxito para el código de pasarela: {0}. ID de Transacción: {1}</value>
+  </data>
+  <data name="PaymentController_UnauthorizedAccess" xml:space="preserve">
+    <value>Acceso no autorizado. Aplicación: {0}, Transacción: {1}</value>
+  </data>
+  <data name="PaymentController_UnexpectedError" xml:space="preserve">
+    <value>Ocurrió un error inesperado durante la generación del enlace de pago para el código de pasarela: {0}</value>
+  </data>
+  <data name="PaymentLinkError" xml:space="preserve">
+    <value>Error al generar el enlace de pago.</value>
+  </data>
+  <data name="PaymentLinkErrorStatus" xml:space="preserve">
+    <value>La operación no fue exitosa:{0}</value>
+  </data>
+  <data name="TaskProcessInitiated" xml:space="preserve">
+    <value>Cancelado por proceso automatico.</value>
+  </data>
+  <data name="TransactionError" xml:space="preserve">
+    <value>Ha ocurrido un error al ejecutar la transacción:</value>
+  </data>
+  <data name="TransactionExists" xml:space="preserve">
+    <value>La transaccion ya fue registrada, debe validar el estado.</value>
+  </data>
+  <data name="TransactionNoFound" xml:space="preserve">
+    <value>Transacción no encontrada</value>
+  </data>
+  <data name="TransactionReferenceRequired" xml:space="preserve">
+    <value>No se encontró la transacción con referencia: {0}</value>
+  </data>
+  <data name="UnexpectedError" xml:space="preserve">
+    <value>Ocurrió un error inesperado {0}</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Se ha producido un error desconocido. Nuestro equipo técnico ha sido notificado y estamos trabajando para resolverlo. Por favor, inténtelo de nuevo más tarde.</value>
+  </data>
+  <data name="UnprocessableWompiEvent" xml:space="preserve">
+    <value>El evento de Wompi no pudo ser procesado.</value>
+  </data>
+  <data name="ErrorAtProcessWompiEvent" xml:space="preserve">
+    <value>Error al procesar evento de Wompi para la transacción con referencia </value>
+  </data>
+  <data name="UnProcessableWompiEvent " xml:space="preserve">
+    <value>Evento de wompi no procesable: </value>
+  </data>
+  <data name="WompiTransactionUpdatedEvent" xml:space="preserve">
+    <value>transaction.updated</value>
+  </data>
+</root>

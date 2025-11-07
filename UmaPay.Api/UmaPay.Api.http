@@ -1,0 +1,6 @@
+@UmaPay.Api_HostAddress = http://localhost:5188
+
+GET {{UmaPay.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

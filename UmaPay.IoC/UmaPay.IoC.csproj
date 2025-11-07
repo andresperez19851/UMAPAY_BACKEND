@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UmaPay.Integration.Nuvei\UmaPay.Integration.Nuvei.csproj" />
+    <ProjectReference Include="..\UmaPay.Integration.Wompi\UmaPay.Integration.Wompi.csproj" />
+    <ProjectReference Include="..\UmaPay.Middleware.Sap\UmaPay.Middleware.Sap.csproj" />
+    <ProjectReference Include="..\UmaPay.Repository\UmaPay.Repository.csproj" />
+    <ProjectReference Include="..\UmaPay.Service\UmaPay.Service.csproj" />
+    <ProjectReference Include="..\UmaPay.Shared\UmaPay.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
