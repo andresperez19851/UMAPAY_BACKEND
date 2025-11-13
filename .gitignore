@@ -369,3 +369,4 @@ FodyWeavers.xsd
 **/appsettings.Prod.json
 /UmaPay.Api/appsettings.Prod.json
 /UmaPay.Api/appsettings.Prod.json
+/UmaPay.Api/appsettings.Production.json
