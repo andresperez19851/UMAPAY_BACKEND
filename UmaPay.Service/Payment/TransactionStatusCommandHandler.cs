@@ -167,6 +167,7 @@ namespace UmaPay.Service
                     else
                     {
                         transaction.SapRequest = invoiceUpdateResult.Data?.RequestContent;
+                        transaction.SapResponse = invoiceUpdateResult.Data.ResponseContent;
                         transaction.Status = new TransactionStatus { Id = ConstStatus.FailedInSap, Name = ConstStatus.GetStatusName(ConstStatus.FailedInSap) };
                     }
 
@@ -239,6 +240,7 @@ namespace UmaPay.Service
                         else
                         {
                             transaction.SapRequest = invoiceUpdateResult.Data?.RequestContent;
+                            transaction.SapResponse = invoiceUpdateResult.Data.ResponseContent;
                             transaction.Status = new TransactionStatus { Id = ConstStatus.FailedInSap, Name = ConstStatus.GetStatusName(ConstStatus.FailedInSap) };
                         }
 

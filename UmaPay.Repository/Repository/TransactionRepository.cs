@@ -420,6 +420,7 @@ namespace UmaPay.Repository
                         from ga in gatewayApps.DefaultIfEmpty()
                         join g in _context.Gateways on ga.GatewayId equals g.GatewayId into gateways
                         from g in gateways.DefaultIfEmpty()
+                        where ts.StatusId != 5
                         select new TransactionReport
                         {
                             Id = t.TransactionId,

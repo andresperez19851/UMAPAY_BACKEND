@@ -51,7 +51,7 @@ namespace UmaPay.Api.Controller
             return Ok(response);
         }
 
-        [ApiKeyAuth]
+       // [ApiKeyAuth]
         [HttpGet(ApiRoutes.Transaction.ByTokenComplete)]
         [ProducesResponseType(typeof(TransactionResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
