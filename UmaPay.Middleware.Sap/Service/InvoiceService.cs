@@ -74,15 +74,17 @@ namespace UmaPay.Middleware.Sap
 
                     if (sapResponse != null)
                     {
+                        sapResponse.RequestContent = paymentRequest;
+                        sapResponse.ResponseContent = responseContent;
+
                         if (sapResponse.IsSuccess)
                         {
-                            sapResponse.ResponseContent = responseContent;
                             return OperationResult<SapResponse>.SuccessResult(sapResponse);
                         }
                         else
                         {
                             var errorMessage = sapResponse.ET_RETURN.GetFormattedMessage();
-                            return OperationResult<SapResponse>.Failure(errorMessage);
+                            return OperationResult<SapResponse>.Failure(errorMessage, sapResponse);
                         }
                     }
 

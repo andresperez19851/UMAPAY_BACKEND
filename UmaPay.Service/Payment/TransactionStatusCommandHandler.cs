@@ -92,11 +92,15 @@ namespace UmaPay.Service
                         {
                             transaction.SapDate = DateTime.UtcNow;
                             transaction.SapDocument = invoiceUpdateResult.Data!.DocumentNumber!;
-                            transaction.Status = new TransactionStatus { Id = ConstStatus.CompletedInSap, Name = ConstStatus.GetStatusName(ConstStatus.CompletedInSap) };
+                            transaction.SapRequest = invoiceUpdateResult.Data!.RequestContent;
                             transaction.SapResponse = invoiceUpdateResult.Data.ResponseContent;
+                            transaction.Status = new TransactionStatus { Id = ConstStatus.CompletedInSap, Name = ConstStatus.GetStatusName(ConstStatus.CompletedInSap) };
                         }
                         else
+                        {
+                            transaction.SapRequest = invoiceUpdateResult.Data?.RequestContent;
                             transaction.Status = new TransactionStatus { Id = ConstStatus.FailedInSap, Name = ConstStatus.GetStatusName(ConstStatus.FailedInSap) };
+                        }
 
                         await _transactionCommandRepository.UpdateAsync(transaction);
 
@@ -133,7 +137,7 @@ namespace UmaPay.Service
                 if (transaction.Status!.Id == ConstStatus.FailedInSap)
                 {
                     var invoiceUpdateResult = await _invoiceService.ProcessSapPaymentAsync(
-                        transaction.Invoice!, 
+                        transaction.Invoice!,
                         transaction.Country!.CurrencyCode,
                         transaction.Gateway!.Code);
 
@@ -156,11 +160,15 @@ namespace UmaPay.Service
                     {
                         transaction.SapDate = DateTime.UtcNow;
                         transaction.SapDocument = invoiceUpdateResult.Data!.DocumentNumber!;
-                        transaction.Status = new TransactionStatus { Id = ConstStatus.CompletedInSap, Name = ConstStatus.GetStatusName(ConstStatus.CompletedInSap) };
+                        transaction.SapRequest = invoiceUpdateResult.Data!.RequestContent;
                         transaction.SapResponse = invoiceUpdateResult.Data.ResponseContent;
+                        transaction.Status = new TransactionStatus { Id = ConstStatus.CompletedInSap, Name = ConstStatus.GetStatusName(ConstStatus.CompletedInSap) };
                     }
                     else
+                    {
+                        transaction.SapRequest = invoiceUpdateResult.Data?.RequestContent;
                         transaction.Status = new TransactionStatus { Id = ConstStatus.FailedInSap, Name = ConstStatus.GetStatusName(ConstStatus.FailedInSap) };
+                    }
 
                     await _transactionCommandRepository.UpdateAsync(transaction);
 
@@ -224,11 +232,15 @@ namespace UmaPay.Service
                         {
                             transaction.SapDate = DateTime.UtcNow;
                             transaction.SapDocument = invoiceUpdateResult.Data!.DocumentNumber!;
-                            transaction.Status = new TransactionStatus { Id = ConstStatus.CompletedInSap, Name = ConstStatus.GetStatusName(ConstStatus.CompletedInSap) };
+                            transaction.SapRequest = invoiceUpdateResult.Data!.RequestContent;
                             transaction.SapResponse = invoiceUpdateResult.Data.ResponseContent;
+                            transaction.Status = new TransactionStatus { Id = ConstStatus.CompletedInSap, Name = ConstStatus.GetStatusName(ConstStatus.CompletedInSap) };
                         }
                         else
+                        {
+                            transaction.SapRequest = invoiceUpdateResult.Data?.RequestContent;
                             transaction.Status = new TransactionStatus { Id = ConstStatus.FailedInSap, Name = ConstStatus.GetStatusName(ConstStatus.FailedInSap) };
+                        }
 
                         await _transactionCommandRepository.UpdateAsync(transaction);
 

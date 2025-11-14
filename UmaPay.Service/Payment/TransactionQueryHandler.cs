@@ -28,6 +28,44 @@
 
         #region Public Methods
 
+        public async Task<OperationResult<Transaction>> GetByIdAsync(int id)
+        {
+            try
+            {
+                var transaction = await _transactionQueryRepository.GetByIdAsync(id);
+
+                if (transaction is null)
+                {
+                    return Message.TransactionNoFound;
+                }
+
+                return transaction;
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<Transaction>.Failure($"{Message.TransactionError} {ex.Message}");
+            }
+        }
+
+        public async Task<OperationResult<Transaction>> GetByTokenCompleteAsync(Guid token)
+        {
+            try
+            {
+                var transaction = await _transactionQueryRepository.GetByTokenCompleteAsync(token);
+
+                if (transaction is null)
+                {
+                    return Message.TransactionNoFound;
+                }
+
+                return transaction;
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<Transaction>.Failure($"{Message.TransactionError} {ex.Message}");
+            }
+        }
+
         public async Task<OperationResult<Transaction>> GetByTokenSingleAsync(Guid token, bool? logTransactionStatus = default)
         {
             try

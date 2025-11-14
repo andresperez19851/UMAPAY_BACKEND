@@ -28,3 +28,11 @@ README.md
 !.git/config
 !.git/packed-refs
 !.git/refs/heads/**
+
+# Excluir archivos de configuración con credenciales sensibles
+# Solo se incluirá appsettings.json en el Docker
+**/appsettings.Development.json
+**/appsettings.Production.json
+**/appsettings.*.json
+# Permitir appsettings.json base
+!**/appsettings.json

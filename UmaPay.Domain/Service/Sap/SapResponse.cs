@@ -16,6 +16,9 @@ namespace UmaPay.Domain
         public bool IsSuccess => ET_RETURN.HasDocument;
 
         [JsonIgnore]
+        public string? RequestContent { get; set; }
+
+        [JsonIgnore]
         public string? ResponseContent { get; set; } 
     }
 

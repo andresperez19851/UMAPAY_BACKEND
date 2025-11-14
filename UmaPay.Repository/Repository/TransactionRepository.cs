@@ -22,8 +22,67 @@ namespace UmaPay.Repository
 
         public async Task<Transaction> GetByIdAsync(int id)
         {
-            var entity = await GetAsync(id);
-            return _mapper.Map<Transaction>(entity);
+            var entity = await (from t in _context.Transactions
+                                join c in _context.Customers on t.CustomerId equals c.CustormerId
+                                join ts in _context.TransactionStatuses on t.StatusId equals ts.StatusId
+                                join co in _context.Countries on t.CountryId equals co.CountryId
+                                join ga in _context.GatewayApplications on t.GatewayApplicationId equals ga.GatewayApplicationId into gatewayApps
+                                from ga in gatewayApps.DefaultIfEmpty()
+                                join g in _context.Gateways on ga.GatewayId equals g.GatewayId into gateways
+                                from g in gateways.DefaultIfEmpty()
+                                where t.TransactionId == id
+                                select new Transaction
+                                {
+                                    Id = t.TransactionId,
+                                    Token = t.Token,
+                                    Reference = t.Reference,
+                                    Amount = t.Amount,
+                                    ExpirationDate = t.ExpirationDate,
+                                    SapDate = t.SapDate,
+                                    SapDocument = t.SapDocument,
+                                    SapRequest = t.SapRequest,
+                                    SapResponse = t.SapResponse,
+                                    PaymentUrl = t.PaymentUrl,
+                                    GatewayPayment = t.GatewayPayment,
+                                    GatewayRequest = t.GatewayRequest,
+                                    GatewayResponse = t.GatewayResponse,
+                                    TransactionDate = t.TransactionDate,
+                                    Customer = new Customer
+                                    {
+                                        Id = c.CustormerId,
+                                        FirstName = c.FirstName,
+                                        CodeSap = c.CodeSap,
+                                        LastName = c.LastName,
+                                        Society = c.Society,
+                                        User = c.User,
+                                        Email = c.Email
+                                    },
+                                    Gateway = g == null ? null : new Gateway { Id = g.GatewayId, Code = g.Code, Name = g.Name },
+                                    Status = new TransactionStatus { Id = ts.StatusId, Name = ts.Name, Description = ts.Description },
+                                    Invoice = (from invoices in _context.TransactionInvoices
+                                               join statusinvoce in _context.TransactionStatuses on invoices.StatusId equals statusinvoce.StatusId
+                                               where invoices.TransactionId == t.TransactionId
+                                               select new Invoice
+                                               {
+                                                   Amount = invoices.Amount,
+                                                   Number = invoices.Number,
+                                                   Status = new TransactionStatus
+                                                   {
+                                                       Id = statusinvoce.StatusId,
+                                                       Name = statusinvoce.Name,
+                                                       Description = statusinvoce.Description
+                                                   }
+                                               }).ToList(),
+                                    Country = new Country
+                                    {
+                                        Id = co.CountryId,
+                                        CurrencyCode = co.CurrencyCode,
+                                        CurrencyName = co.CurrencyName,
+                                        Name = co.Name
+                                    }
+                                })
+                                .FirstOrDefaultAsync();
+            return entity!;
         }
 
         public async Task<IEnumerable<Transaction>> GetByStatusAsync(int statusId)
@@ -77,34 +136,34 @@ namespace UmaPay.Repository
         public async Task<Transaction?> GetByGatewayReference(string gatewayId, string gatewayCode)
         {
             return await (from transaction in _context.Transactions
-                   join ga in _context.GatewayApplications on transaction.GatewayApplicationId equals ga.GatewayApplicationId
-                   join g in _context.Gateways on ga.GatewayId equals g.GatewayId
-                   join c in _context.Customers on transaction.CustomerId equals c.CustormerId
-                   join ts in _context.TransactionStatuses on transaction.StatusId equals ts.StatusId
-                   join co in _context.Countries on transaction.CountryId equals co.CountryId
-                   where transaction.Reference == gatewayId && g.Code == gatewayCode
-                   select new Transaction
-                   {
-                       Amount = transaction.Amount,
-                       ExpirationDate = transaction.ExpirationDate,
-                       Id = transaction.TransactionId,
-                       Token = transaction.Token,
-                       Reference = transaction.Reference,
-                       SapDate = transaction.SapDate,
-                       PaymentUrl = transaction.PaymentUrl,
-                       GatewayPayment = transaction.GatewayPayment,
-                       GatewayRequest = transaction.GatewayRequest,
-                       GatewayResponse = transaction.GatewayResponse,
-                       TransactionDate = transaction.TransactionDate,
-                       Country = new Country { Id = co.CountryId, CurrencyCode = co.CurrencyCode, CurrencyName = co.CurrencyName, Name = co.Name },
-                       Customer = new Customer { Id = c.CustormerId, FirstName = c.FirstName, CodeSap = c.CodeSap, LastName = c.LastName, Society = c.Society, User = c.User, Email = c.Email },
-                       Gateway = new Gateway { Id = g.GatewayId, Code = g.Code, Name = g.Name },
-                       Status = new TransactionStatus { Id = ts.StatusId, Name = ts.Name },
-                       Invoice = (from invoices in _context.TransactionInvoices
-                                  join statusinvoce in _context.TransactionStatuses on invoices.StatusId equals statusinvoce.StatusId
-                                  where invoices.TransactionId == transaction.TransactionId
-                                  select new Invoice { Amount = invoices.Amount, Number = invoices.Number, Status = new TransactionStatus { Id = statusinvoce.StatusId, Name = statusinvoce.Name, Description = statusinvoce.Description } }).ToList(),
-                   }).FirstOrDefaultAsync();
+                          join ga in _context.GatewayApplications on transaction.GatewayApplicationId equals ga.GatewayApplicationId
+                          join g in _context.Gateways on ga.GatewayId equals g.GatewayId
+                          join c in _context.Customers on transaction.CustomerId equals c.CustormerId
+                          join ts in _context.TransactionStatuses on transaction.StatusId equals ts.StatusId
+                          join co in _context.Countries on transaction.CountryId equals co.CountryId
+                          where transaction.Reference == gatewayId && g.Code == gatewayCode
+                          select new Transaction
+                          {
+                              Amount = transaction.Amount,
+                              ExpirationDate = transaction.ExpirationDate,
+                              Id = transaction.TransactionId,
+                              Token = transaction.Token,
+                              Reference = transaction.Reference,
+                              SapDate = transaction.SapDate,
+                              PaymentUrl = transaction.PaymentUrl,
+                              GatewayPayment = transaction.GatewayPayment,
+                              GatewayRequest = transaction.GatewayRequest,
+                              GatewayResponse = transaction.GatewayResponse,
+                              TransactionDate = transaction.TransactionDate,
+                              Country = new Country { Id = co.CountryId, CurrencyCode = co.CurrencyCode, CurrencyName = co.CurrencyName, Name = co.Name },
+                              Customer = new Customer { Id = c.CustormerId, FirstName = c.FirstName, CodeSap = c.CodeSap, LastName = c.LastName, Society = c.Society, User = c.User, Email = c.Email },
+                              Gateway = new Gateway { Id = g.GatewayId, Code = g.Code, Name = g.Name },
+                              Status = new TransactionStatus { Id = ts.StatusId, Name = ts.Name },
+                              Invoice = (from invoices in _context.TransactionInvoices
+                                         join statusinvoce in _context.TransactionStatuses on invoices.StatusId equals statusinvoce.StatusId
+                                         where invoices.TransactionId == transaction.TransactionId
+                                         select new Invoice { Amount = invoices.Amount, Number = invoices.Number, Status = new TransactionStatus { Id = statusinvoce.StatusId, Name = statusinvoce.Name, Description = statusinvoce.Description } }).ToList(),
+                          }).FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<Transaction>> GetTransactionsByStatusAsync(int status)
@@ -241,6 +300,71 @@ namespace UmaPay.Repository
                                     Country = new Country { Id = co.CountryId, CurrencyCode = co.CurrencyCode, CurrencyName = co.CurrencyName, Name = co.Name }
                                 })
                           .FirstOrDefaultAsync();
+            return entity!;
+        }
+
+        public async Task<Transaction> GetByTokenCompleteAsync(Guid token)
+        {
+            var entity = await (from t in _context.Transactions
+                                join c in _context.Customers on t.CustomerId equals c.CustormerId
+                                join ts in _context.TransactionStatuses on t.StatusId equals ts.StatusId
+                                join co in _context.Countries on t.CountryId equals co.CountryId
+                                join ga in _context.GatewayApplications on t.GatewayApplicationId equals ga.GatewayApplicationId into gatewayApps
+                                from ga in gatewayApps.DefaultIfEmpty()
+                                join g in _context.Gateways on ga.GatewayId equals g.GatewayId into gateways
+                                from g in gateways.DefaultIfEmpty()
+                                where t.Token == token
+                                select new Transaction
+                                {
+                                    Id = t.TransactionId,
+                                    Token = t.Token,
+                                    Reference = t.Reference,
+                                    Amount = t.Amount,
+                                    ExpirationDate = t.ExpirationDate,
+                                    SapDate = t.SapDate,
+                                    SapDocument = t.SapDocument,
+                                    SapRequest = t.SapRequest,
+                                    SapResponse = t.SapResponse,
+                                    PaymentUrl = t.PaymentUrl,
+                                    GatewayPayment = t.GatewayPayment,
+                                    GatewayRequest = t.GatewayRequest,
+                                    GatewayResponse = t.GatewayResponse,
+                                    TransactionDate = t.TransactionDate,
+                                    Customer = new Customer
+                                    {
+                                        Id = c.CustormerId,
+                                        FirstName = c.FirstName,
+                                        CodeSap = c.CodeSap,
+                                        LastName = c.LastName,
+                                        Society = c.Society,
+                                        User = c.User,
+                                        Email = c.Email
+                                    },
+                                    Gateway = g == null ? null : new Gateway { Id = g.GatewayId, Code = g.Code, Name = g.Name },
+                                    Status = new TransactionStatus { Id = ts.StatusId, Name = ts.Name, Description = ts.Description },
+                                    Invoice = (from invoices in _context.TransactionInvoices
+                                               join statusinvoce in _context.TransactionStatuses on invoices.StatusId equals statusinvoce.StatusId
+                                               where invoices.TransactionId == t.TransactionId
+                                               select new Invoice
+                                               {
+                                                   Amount = invoices.Amount,
+                                                   Number = invoices.Number,
+                                                   Status = new TransactionStatus
+                                                   {
+                                                       Id = statusinvoce.StatusId,
+                                                       Name = statusinvoce.Name,
+                                                       Description = statusinvoce.Description
+                                                   }
+                                               }).ToList(),
+                                    Country = new Country
+                                    {
+                                        Id = co.CountryId,
+                                        CurrencyCode = co.CurrencyCode,
+                                        CurrencyName = co.CurrencyName,
+                                        Name = co.Name
+                                    }
+                                })
+                                .FirstOrDefaultAsync();
             return entity!;
         }
 

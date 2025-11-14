@@ -5,8 +5,6 @@ namespace UmaPay.Domain
     public class TransactionReport
     {
         // Información de la transacción
-
-        [JsonIgnore]
         public int Id { get; set; }
 
         //Factura
@@ -15,7 +13,7 @@ namespace UmaPay.Domain
 
         //Valor pago
         public decimal AmountGateway { get; set; }
-        
+
         //Pasarela
         public string Gateway { get; set; }
 
@@ -36,7 +34,7 @@ namespace UmaPay.Domain
 
         [JsonIgnore]
         public string StatusName { get; set; }
-        
+
         public string Status { get; set; }
 
         [JsonIgnore]
