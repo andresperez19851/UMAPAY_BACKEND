@@ -13,6 +13,7 @@
         Task<Transaction> GetTransactionsByStatusAsync(int status, Guid token);
         Task<Transaction> GetByTokenAsync(Guid token);
         Task<Transaction> GetByTokenSingleAsync(Guid token);
+        Task<Transaction> GetByTokenCompleteAsync(Guid token);
         Task<bool> IsTokenUniqueAsync(Guid token);
         Task<IEnumerable<TransactionReport>> SearchTransactionsAsync(DateTime? startDate, DateTime? endDate, string? status, Guid? token, string customer);
         Task<Transaction?> GetByGatewayReference(string gatewayReferenceId, string gatewayCode);

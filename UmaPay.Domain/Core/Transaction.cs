@@ -17,6 +17,7 @@
         public string GatewayResponse { get; set; } = string.Empty;
         public string GatewayRequest { get; set; } = string.Empty;
         public string GatewayPayment { get; set; } = string.Empty;
+        public string? SapRequest { get; set; }
         public string? SapResponse { get; set; }
 
         public ICollection<Invoice>? Invoice { get; set; }

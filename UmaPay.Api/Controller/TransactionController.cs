@@ -51,13 +51,30 @@ namespace UmaPay.Api.Controller
             return Ok(response);
         }
 
+       // [ApiKeyAuth]
+        [HttpGet(ApiRoutes.Transaction.ByTokenComplete)]
+        [ProducesResponseType(typeof(TransactionResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult<TransactionResponse>> GetTransactionByTokenComplete([FromRoute] Guid token)
+        {
+            var result = await _transactionQuery.GetByTokenCompleteAsync(token);
+            if (!result.Success)
+            {
+                return NotFound(result.Message);
+            }
+
+            var response = MapToTransactionResponse(result.Data);
+            return Ok(response);
+        }
+
         [ApiKeyAuth]
         [HttpGet(ApiRoutes.Transaction.ByToken)]
         [ProducesResponseType(typeof(TransactionResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<TransactionResponse>> GetTransactionByToken(
-            [FromRoute] Guid token, 
+            [FromRoute] Guid token,
             [FromQuery] bool? logTransactionStatus = false)
         {
             var result = await _transactionQuery.GetByTokenSingleAsync(token, logTransactionStatus);
@@ -161,6 +178,14 @@ namespace UmaPay.Api.Controller
                     Society = transaction.Customer.Society
                 },
                 TransactionDate = transaction.TransactionDate,
+                PaymentUrl = transaction.PaymentUrl ?? string.Empty,
+                GatewayRequest = transaction.GatewayRequest,
+                GatewayResponse = transaction.GatewayResponse,
+                GatewayPayment = transaction.GatewayPayment,
+                SapDate = transaction.SapDate,
+                SapDocument = transaction.SapDocument,
+                SapRequest = transaction.SapRequest,
+                SapResponse = transaction.SapResponse,
 
                 Invoices = transaction.Invoice?.Select(i => new InvoiceResponse
                 {
@@ -193,6 +218,7 @@ namespace UmaPay.Api.Controller
             public static class Transaction
             {
                 public const string Get = "get";
+                public const string ByTokenComplete = "complete/{token}";
                 public const string ByToken = "by-token/{token}";
                 public const string ByTokenFlag = "flag/{flag}/by-token/{token}";
                 public const string Search = "search";

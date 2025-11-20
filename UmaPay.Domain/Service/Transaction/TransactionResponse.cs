@@ -13,6 +13,13 @@
         public Country? Country { get; set; }
         public DateTime TransactionDate { get; set; }
         public string PaymentUrl { get; set; } = string.Empty;
+        public string? GatewayRequest { get; set; }
+        public string? GatewayResponse { get; set; }
+        public string? GatewayPayment { get; set; }
+        public DateTime? SapDate { get; set; }
+        public string? SapDocument { get; set; }
+        public string? SapRequest { get; set; }
+        public string? SapResponse { get; set; }
         public List<InvoiceResponse>? Invoices { get; set; }
     }
 

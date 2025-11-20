@@ -245,6 +245,7 @@ namespace UmaPay.Service
                 {
                     transaction.SapDate = DateTime.UtcNow;
                     transaction.SapDocument = invoiceUpdateResult.Data!.DocumentNumber!;
+                    transaction.SapRequest = invoiceUpdateResult.Data!.RequestContent;
                     transaction.SapResponse = invoiceUpdateResult.Data!.ResponseContent;
                     transaction.Status = new TransactionStatus
                     {
@@ -254,6 +255,8 @@ namespace UmaPay.Service
                 }
                 else
                 {
+                    transaction.SapRequest = invoiceUpdateResult.Data?.RequestContent;
+                    transaction.SapResponse = invoiceUpdateResult.Data!.ResponseContent;
                     transaction.Status = new TransactionStatus
                     {
                         Id = ConstStatus.FailedInSap,

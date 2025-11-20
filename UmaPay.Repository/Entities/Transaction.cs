@@ -35,6 +35,8 @@ namespace UmaPay.Repository.Entities
 
         public string? GatewayPayment { get; set; }
 
+        public string? SapRequest { get; set; }
+
         public string? SapResponse { get; set; }
 
         public string? SapDocument { get; set; }
